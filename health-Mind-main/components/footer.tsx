@@ -24,7 +24,7 @@ export default function Footer() {
     {
       icon: "/youtube.svg",
       label: "YouTube",
-      url: "https://www.youtube.com/@HealthMind-app",
+      url: "https://www.youtube.com/@HealthMindtv",
     },
   ];
 
