@@ -222,6 +222,13 @@ export default function Navbar() {
                                 >
                                     Terms & Conditions
                                 </Link>
+                                <Link
+                                    href="/account-deletion"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="block py-2 text-xs text-[#575757] hover:text-[#1E6FFB]"
+                                >
+                                    Account Deletion
+                                </Link>
                             </div>
                         </div>
                     </motion.div>

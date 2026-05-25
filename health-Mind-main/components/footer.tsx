@@ -130,6 +130,14 @@ export default function Footer() {
                   Terms & Conditions
                 </a>
               </li>
+              <li>
+                <a
+                  href="/account-deletion"
+                  className="hover:text-[#1E6FFB] transition-colors"
+                >
+                  Account Deletion
+                </a>
+              </li>
             </ul>
           </motion.div>
 
@@ -182,6 +190,10 @@ export default function Footer() {
             <span>|</span>
             <a href="/terms-and-conditions" className="hover:text-[#1E6FFB] transition-colors">
               Terms & Conditions
+            </a>
+            <span>|</span>
+            <a href="/account-deletion" className="hover:text-[#1E6FFB] transition-colors">
+              Account Deletion
             </a>
           </div>
         </motion.div>
