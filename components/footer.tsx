@@ -24,7 +24,7 @@ export default function Footer() {
     {
       icon: "/youtube.svg",
       label: "YouTube",
-      url: "https://www.youtube.com/@HealthMind-app",
+      url: "https://www.youtube.com/@HealthMindtv",
     },
   ];
 
@@ -100,15 +100,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#features"
-                  className="hover:text-[#1E6FFB] transition-colors"
-                >
-                  Features
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#story"
+                  href="/about"
                   className="hover:text-[#1E6FFB] transition-colors"
                 >
                   Our Story
@@ -116,10 +108,34 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="#waitlist"
+                  href="/download"
                   className="hover:text-[#1E6FFB] transition-colors"
                 >
-                  Join Waitlist
+                  Download
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/privacy-policy"
+                  className="hover:text-[#1E6FFB] transition-colors"
+                >
+                  Privacy Policy
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/terms-and-conditions"
+                  className="hover:text-[#1E6FFB] transition-colors"
+                >
+                  Terms & Conditions
+                </a>
+              </li>
+              <li>
+                <a
+                  href="/account-deletion"
+                  className="hover:text-[#1E6FFB] transition-colors"
+                >
+                  Account Deletion
                 </a>
               </li>
             </ul>
@@ -156,7 +172,7 @@ export default function Footer() {
         {/* Divider */}
         <div className="h-px bg-white/10 mb-6 sm:mb-8" />
 
-        {/* Copyright */}
+        {/* Copyright & Legal */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -164,9 +180,22 @@ export default function Footer() {
           transition={{ duration: 0.6, delay: 0.3 }}
           className="text-center"
         >
-          <p className="text-xs sm:text-sm text-white/60">
+          <p className="text-xs sm:text-sm text-white/60 mb-3">
             © {currentYear} HealthMind Group. All Rights Reserved.
           </p>
+          <div className="flex flex-wrap justify-center gap-4 text-xs text-white/50">
+            <a href="/privacy-policy" className="hover:text-[#1E6FFB] transition-colors">
+              Privacy Policy
+            </a>
+            <span>|</span>
+            <a href="/terms-and-conditions" className="hover:text-[#1E6FFB] transition-colors">
+              Terms & Conditions
+            </a>
+            <span>|</span>
+            <a href="/account-deletion" className="hover:text-[#1E6FFB] transition-colors">
+              Account Deletion
+            </a>
+          </div>
         </motion.div>
       </div>
     </footer>
