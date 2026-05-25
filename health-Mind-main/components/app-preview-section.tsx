@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Lock } from "lucide-react";
 
 export default function AppPreviewSection() {
   return (

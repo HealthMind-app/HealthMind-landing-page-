@@ -76,8 +76,10 @@ export default function FeaturesSection() {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
-          {features.map((feature, idx) => (
-            <motion.div
+          {features.map((feature, idx) => {
+            const Icon = feature.icon;
+            return (
+              <motion.div
                 key={idx}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -95,8 +97,8 @@ export default function FeaturesSection() {
                       alt={`${feature.title} logo`}
                       className="w-6 sm:w-8 h-6 sm:h-8"
                     />
-                  ) : feature.icon ? (
-                    <feature.icon className="w-6 sm:w-8 h-6 sm:h-8 text-white" />
+                  ) : Icon ? (
+                    <Icon className="w-6 sm:w-8 h-6 sm:h-8 text-white" />
                   ) : null}
                 </motion.div>
                 <h3 className="text-base sm:text-xl font-bold text-[#0A0A0A] mb-2 sm:mb-3">
@@ -106,7 +108,8 @@ export default function FeaturesSection() {
                   {feature.description}
                 </p>
               </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
