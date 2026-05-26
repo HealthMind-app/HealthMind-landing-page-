@@ -5,13 +5,18 @@ import { motion, AnimatePresence } from "framer-motion"
 import Logo from "./logo"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { PartyPopper, Menu, X } from "lucide-react"
+import { PartyPopper, Menu, X, ChevronDown } from "lucide-react"
 
 const navLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "Our Story" },
-    { href: "/download", label: "Download" },
+    { href: "https://play.google.com/store/apps/details?id=com.healthmind.app", label: "Download", external: true },
+    { href: "/privacy-policy", label: "Privacy Policy" },
+    { href: "/terms-and-conditions", label: "Terms & Conditions" },
+    { href: "/account-deletion", label: "Account Deletion" },
 ]
+
+const playStoreUrl = "https://play.google.com/store/apps/details?id=com.healthmind.app"
 
 export default function Navbar() {
     const [showInput, setShowInput] = useState(false)
@@ -20,6 +25,7 @@ export default function Navbar() {
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState("")
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+    const [desktopMenuOpen, setDesktopMenuOpen] = useState(false)
     const pathname = usePathname()
 
     useEffect(() => {
@@ -77,21 +83,66 @@ export default function Navbar() {
                         </span>
                     </Link>
 
-                    {/* Desktop Nav Links */}
                     <div className="hidden md:flex items-center gap-6">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.href}
-                                href={link.href}
-                                className={`text-sm font-medium transition-colors ${
-                                    pathname === link.href
-                                        ? "text-[#1E6FFB]"
-                                        : "text-[#575757] hover:text-[#1E6FFB]"
-                                }`}
+                        <Link
+                            href="/"
+                            className={`text-sm font-medium transition-colors ${
+                                pathname === "/"
+                                    ? "text-[#1E6FFB]"
+                                    : "text-[#575757] hover:text-[#1E6FFB]"
+                            }`}
+                        >
+                            Home
+                        </Link>
+                        <div className="relative">
+                            <button
+                                onClick={() => setDesktopMenuOpen(!desktopMenuOpen)}
+                                onBlur={() => setTimeout(() => setDesktopMenuOpen(false), 150)}
+                                className="flex items-center gap-1 text-sm font-medium text-[#575757] hover:text-[#1E6FFB] transition-colors"
                             >
-                                {link.label}
-                            </Link>
-                        ))}
+                                Pages
+                                <ChevronDown className={`w-4 h-4 transition-transform ${desktopMenuOpen ? "rotate-180" : ""}`} />
+                            </button>
+                            <AnimatePresence>
+                                {desktopMenuOpen && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 8 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, y: 8 }}
+                                        transition={{ duration: 0.18 }}
+                                        className="absolute left-0 top-full mt-3 w-56 rounded-2xl border border-[#E5E7EB] bg-white shadow-xl p-2"
+                                    >
+                                        {navLinks.map((link) => {
+                                            const itemClassName = `block rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
+                                                pathname === link.href
+                                                    ? "bg-[#1E6FFB]/10 text-[#1E6FFB]"
+                                                    : "text-[#575757] hover:bg-[#F9FAFB] hover:text-[#1E6FFB]"
+                                            }`
+
+                                            return link.external ? (
+                                                <a
+                                                    key={link.href}
+                                                    href={link.href}
+                                                    target="_blank"
+                                                    rel="noopener noreferrer"
+                                                    className={itemClassName}
+                                                >
+                                                    {link.label}
+                                                </a>
+                                            ) : (
+                                                <Link
+                                                    key={link.href}
+                                                    href={link.href}
+                                                    className={itemClassName}
+                                                >
+                                                    {link.label}
+                                                </Link>
+                                            )
+                                        })}
+                                    </motion.div>
+                                )}
+                            </AnimatePresence>
+                        </div>
                     </div>
                 </div>
 
@@ -156,12 +207,14 @@ export default function Navbar() {
 
                     {/* Mobile: Menu Button + Simplified CTA */}
                     <div className="flex md:hidden items-center gap-2">
-                        <Link
-                            href="/download"
+                        <a
+                            href={playStoreUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
                             className="px-3 py-2 rounded-full bg-gradient-to-r from-[#1E6FFB] to-[#1AD4B8] text-white font-semibold text-xs hover:shadow-md"
                         >
                             Get App
-                        </Link>
+                        </a>
                         <button
                             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                             className="p-2 text-[#575757] hover:text-[#1E6FFB] transition-colors"
@@ -193,43 +246,35 @@ export default function Navbar() {
                         className="md:hidden border-t border-[#E5E7EB] bg-white"
                     >
                         <div className="px-4 py-4 space-y-2">
-                            {navLinks.map((link) => (
-                                <Link
-                                    key={link.href}
-                                    href={link.href}
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className={`block py-2 text-sm font-medium ${
-                                        pathname === link.href
-                                            ? "text-[#1E6FFB]"
-                                            : "text-[#575757] hover:text-[#1E6FFB]"
-                                    }`}
-                                >
-                                    {link.label}
-                                </Link>
-                            ))}
-                            <div className="pt-2 border-t border-[#E5E7EB]">
-                                <Link
-                                    href="/privacy-policy"
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className="block py-2 text-xs text-[#575757] hover:text-[#1E6FFB]"
-                                >
-                                    Privacy Policy
-                                </Link>
-                                <Link
-                                    href="/terms-and-conditions"
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className="block py-2 text-xs text-[#575757] hover:text-[#1E6FFB]"
-                                >
-                                    Terms & Conditions
-                                </Link>
-                                <Link
-                                    href="/account-deletion"
-                                    onClick={() => setMobileMenuOpen(false)}
-                                    className="block py-2 text-xs text-[#575757] hover:text-[#1E6FFB]"
-                                >
-                                    Account Deletion
-                                </Link>
-                            </div>
+                            {navLinks.map((link) => {
+                                const itemClassName = `block py-2 text-sm font-medium ${
+                                    pathname === link.href
+                                        ? "text-[#1E6FFB]"
+                                        : "text-[#575757] hover:text-[#1E6FFB]"
+                                }`
+
+                                return link.external ? (
+                                    <a
+                                        key={link.href}
+                                        href={link.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className={itemClassName}
+                                    >
+                                        {link.label}
+                                    </a>
+                                ) : (
+                                    <Link
+                                        key={link.href}
+                                        href={link.href}
+                                        onClick={() => setMobileMenuOpen(false)}
+                                        className={itemClassName}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                )
+                            })}
                         </div>
                     </motion.div>
                 )}
