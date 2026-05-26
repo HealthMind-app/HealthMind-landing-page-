@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import Logo from "./logo"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { PartyPopper, Menu, X, ChevronDown } from "lucide-react"
+import { PartyPopper, Menu, X } from "lucide-react"
 
 const navLinks = [
     { href: "/", label: "Home" },
@@ -25,7 +25,6 @@ export default function Navbar() {
     const [success, setSuccess] = useState(false)
     const [error, setError] = useState("")
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-    const [desktopMenuOpen, setDesktopMenuOpen] = useState(false)
     const pathname = usePathname()
 
     useEffect(() => {
@@ -83,66 +82,34 @@ export default function Navbar() {
                         </span>
                     </Link>
 
-                    <div className="hidden md:flex items-center gap-6">
-                        <Link
-                            href="/"
-                            className={`text-sm font-medium transition-colors ${
-                                pathname === "/"
+                    <div className="hidden md:flex items-center gap-4 lg:gap-6">
+                        {navLinks.map((link) => {
+                            const itemClassName = `text-xs lg:text-sm font-medium transition-colors whitespace-nowrap ${
+                                pathname === link.href
                                     ? "text-[#1E6FFB]"
                                     : "text-[#575757] hover:text-[#1E6FFB]"
-                            }`}
-                        >
-                            Home
-                        </Link>
-                        <div className="relative">
-                            <button
-                                onClick={() => setDesktopMenuOpen(!desktopMenuOpen)}
-                                onBlur={() => setTimeout(() => setDesktopMenuOpen(false), 150)}
-                                className="flex items-center gap-1 text-sm font-medium text-[#575757] hover:text-[#1E6FFB] transition-colors"
-                            >
-                                Pages
-                                <ChevronDown className={`w-4 h-4 transition-transform ${desktopMenuOpen ? "rotate-180" : ""}`} />
-                            </button>
-                            <AnimatePresence>
-                                {desktopMenuOpen && (
-                                    <motion.div
-                                        initial={{ opacity: 0, y: 8 }}
-                                        animate={{ opacity: 1, y: 0 }}
-                                        exit={{ opacity: 0, y: 8 }}
-                                        transition={{ duration: 0.18 }}
-                                        className="absolute left-0 top-full mt-3 w-56 rounded-2xl border border-[#E5E7EB] bg-white shadow-xl p-2"
-                                    >
-                                        {navLinks.map((link) => {
-                                            const itemClassName = `block rounded-xl px-4 py-3 text-sm font-medium transition-colors ${
-                                                pathname === link.href
-                                                    ? "bg-[#1E6FFB]/10 text-[#1E6FFB]"
-                                                    : "text-[#575757] hover:bg-[#F9FAFB] hover:text-[#1E6FFB]"
-                                            }`
+                            }`
 
-                                            return link.external ? (
-                                                <a
-                                                    key={link.href}
-                                                    href={link.href}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className={itemClassName}
-                                                >
-                                                    {link.label}
-                                                </a>
-                                            ) : (
-                                                <Link
-                                                    key={link.href}
-                                                    href={link.href}
-                                                    className={itemClassName}
-                                                >
-                                                    {link.label}
-                                                </Link>
-                                            )
-                                        })}
-                                    </motion.div>
-                                )}
-                            </AnimatePresence>
-                        </div>
+                            return link.external ? (
+                                <a
+                                    key={link.href}
+                                    href={link.href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={itemClassName}
+                                >
+                                    {link.label}
+                                </a>
+                            ) : (
+                                <Link
+                                    key={link.href}
+                                    href={link.href}
+                                    className={itemClassName}
+                                >
+                                    {link.label}
+                                </Link>
+                            )
+                        })}
                     </div>
                 </div>
 
