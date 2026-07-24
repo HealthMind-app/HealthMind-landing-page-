@@ -1,0 +1,24 @@
+[debug] [2026-07-20T01:49:35.821Z] ----------------------------------------------------------------------
+[debug] [2026-07-20T01:49:35.831Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\User\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js auth:export users.csv --format=csv --project=healthmind-app
+[debug] [2026-07-20T01:49:35.831Z] CLI Version:   15.16.0
+[debug] [2026-07-20T01:49:35.831Z] Platform:      win32
+[debug] [2026-07-20T01:49:35.831Z] Node Version:  v20.20.0
+[debug] [2026-07-20T01:49:35.832Z] Time:          Mon Jul 20 2026 04:49:35 GMT+0300 (East Africa Time)
+[debug] [2026-07-20T01:49:35.832Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-07-20T01:49:35.835Z] >>> [apiv2][query] GET https://firebase-public.firebaseio.com/cli.json [none]
+[debug] [2026-07-20T01:49:35.929Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-07-20T01:49:35.930Z] > authorizing via signed-in user (healthmindgroup.app@gmail.com)
+[debug] [2026-07-20T01:49:35.930Z] [iam] checking project healthmind-app for permissions ["firebase.projects.get","firebaseauth.users.get"]
+[debug] [2026-07-20T01:49:35.931Z] Checked if tokens are valid: false, expires at: 1783536582047
+[debug] [2026-07-20T01:49:35.932Z] Checked if tokens are valid: false, expires at: 1783536582047
+[debug] [2026-07-20T01:49:35.932Z] > refreshing access token with scopes: []
+[debug] [2026-07-20T01:49:35.933Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-07-20T01:49:35.933Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-07-20T01:49:37.222Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-07-20T01:49:37.223Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-07-20T01:49:37.235Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/healthmind-app:testIamPermissions [none]
+[debug] [2026-07-20T01:49:37.235Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/healthmind-app:testIamPermissions  x-goog-user-project=healthmind-app
+[debug] [2026-07-20T01:49:37.235Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/healthmind-app:testIamPermissions {"permissions":["firebase.projects.get","firebaseauth.users.get"]}
+[debug] [2026-07-20T01:49:38.681Z] <<< [apiv2][status] GET https://firebase-public.firebaseio.com/cli.json 200
+[debug] [2026-07-20T01:49:38.681Z] <<< [apiv2][body] GET https://firebase-public.firebaseio.com/cli.json {"cloudBuildErrorAfter":1594252800000,"cloudBuildWarnAfter":1590019200000,"defaultNode10After":1594252800000,"minVersion":"3.0.5","node8DeploysDisabledAfter":1613390400000,"node8RuntimeDisabledAfter":1615809600000,"node8WarnAfter":1600128000000}
