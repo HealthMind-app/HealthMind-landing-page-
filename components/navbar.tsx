@@ -10,6 +10,7 @@ import { PartyPopper, Menu, X } from "lucide-react"
 const navLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "Our Story" },
+    { href: "/impact", label: "Impact" },
     { href: "https://play.google.com/store/apps/details?id=com.healthmind.app", label: "Download", external: true },
     { href: "/privacy-policy", label: "Privacy Policy" },
     { href: "/terms-and-conditions", label: "Terms & Conditions" },

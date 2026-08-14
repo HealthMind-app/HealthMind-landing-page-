@@ -1,0 +1,14 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.healthmind.app",
+      "sha256_cert_fingerprints": [
+        "BD:D4:8F:41:E8:83:40:18:92:6A:43:22:0D:E3:B7:23:FC:BF:C6:DA:B9:B3:74:75:EA:26:E8:35:79:5D:76:67",
+        "42:98:7D:C2:50:99:A0:C6:A6:D7:36:27:68:6F:93:05:C2:88:17:01:2A:F3:BA:FD:DE:69:AF:69:14:87:C6:F4",
+        "64:DE:71:B8:49:21:99:A3:29:1C:BA:BF:EE:80:C4:75:2E:00:35:E0:99:DC:42:6F:95:26:1E:E5:4A:14:4D:1A"
+      ]
+    }
+  }
+]

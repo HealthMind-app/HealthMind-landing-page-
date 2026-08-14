@@ -32,7 +32,7 @@ const features = [
     icon: Shield,
     title: "Privacy & Security",
     description:
-      "Your health data is protected with enterprise-grade security, HIPAA compliance, and end-to-end encryption.",
+      "HealthMind uses authenticated access and the security controls provided by its production infrastructure. Sensitive data is not used for public impact reporting.",
     bgColor: "from-orange-50 to-orange-100",
     iconBg: "bg-orange-500",
   },
