@@ -29,6 +29,11 @@ export async function GET() {
       {
         ...defaultImpactSnapshot,
         status: "error",
+        metrics: defaultImpactSnapshot.metrics.map((metric) => ({
+          ...metric,
+          status: "error" as const,
+          publicExplanation: "The verified source could not be reached. No sample value was substituted.",
+        })),
         publicExplanation: "Verified impact data is temporarily unavailable.",
       },
       { status: 503 },

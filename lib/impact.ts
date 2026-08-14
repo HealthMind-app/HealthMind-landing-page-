@@ -64,11 +64,11 @@ export const defaultImpactSnapshot: PublicImpactSnapshot = {
 }
 
 export function metricById(snapshot: PublicImpactSnapshot, id: string) {
-  return snapshot.metrics.find((metric) => metric.id === id)
+  return snapshot.metrics.find((metric) => metric.id === id) ?? defaultImpactSnapshot.metrics.find((metric) => metric.id === id)
 }
 
 export function formatMetricValue(metric?: PublicImpactMetric) {
-  if (!metric || metric.value === null || metric.status !== "verified") return null
+  if (!metric || metric.value === null || !["verified", "stale"].includes(metric.status)) return null
   const value = new Intl.NumberFormat("en-US").format(metric.value)
   return metric.unit === "percent" ? `${value}%` : value
 }
