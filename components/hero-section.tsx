@@ -96,7 +96,7 @@ export default function HeroSection() {
           className="text-xs sm:text-sm font-semibold text-[#1E6FFB] mb-8 sm:mb-10 flex justify-center items-center gap-2 flex-wrap"
         >
           <Users className="w-4 h-4 flex-shrink-0" />
-          <span>4,000+ people already joined this month</span>
+          <span>Built for people seeking more consistent wellness support</span>
         </motion.p>
 
         <motion.div
@@ -115,7 +115,7 @@ export default function HeroSection() {
           </div>
           <div className="flex items-center gap-2">
             <Shield className="w-4 h-4 sm:w-5 sm:h-5 text-[#22C55E] flex-shrink-0" />
-            <span>End-to-End Encrypted</span>
+            <span>Privacy-conscious design</span>
           </div>
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-[#22C55E] flex-shrink-0" />

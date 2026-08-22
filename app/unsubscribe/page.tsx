@@ -1,0 +1,2 @@
+import OpenAppPage from "@/components/open-app-page"
+export default function Page() { return <OpenAppPage title="Manage email preferences" description="Open HealthMind to review notification and email preferences associated with your account." appPath="settings" note="This page does not claim that an unsubscribe request has been completed. A secure, tokenized one-click unsubscribe service still needs to be implemented before marketing emails can offer one-click removal." /> }

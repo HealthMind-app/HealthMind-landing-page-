@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Gift, Zap, Users, ArrowLeft, Download, Star } from "lucide-react";
+import { ShieldCheck, BarChart3, Smartphone, ArrowLeft, Download } from "lucide-react";
 import Link from "next/link";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
@@ -9,40 +9,19 @@ import WaitlistForm from "@/components/waitlist-form";
 
 const benefits = [
   {
-    icon: Gift,
-    title: "Early Access",
-    desc: "Get priority onboarding and exclusive beta features first.",
+    icon: Smartphone,
+    title: "Available on Android",
+    desc: "Install HealthMind from its official Google Play listing.",
   },
   {
-    icon: Zap,
-    title: "Lifetime Benefits",
-    desc: "Early users receive special pricing and premium features forever.",
+    icon: ShieldCheck,
+    title: "Privacy-conscious reporting",
+    desc: "Public impact reporting uses only approved aggregates, never personal wellness content.",
   },
   {
-    icon: Users,
-    title: "Limited Slots",
-    desc: "Only 1,000 founding members will get these exclusive perks.",
-  },
-];
-
-const testimonials = [
-  {
-    quote:
-      "HealthMind has completely transformed how I manage my wellness. The AI insights are incredible.",
-    author: "Sarah Nakimuli",
-    role: "Health Enthusiast",
-  },
-  {
-    quote:
-      "Finally, an app that understands the complexity of health management. Highly recommended.",
-    author: "Dr. Michael Kato",
-    role: "Healthcare Professional",
-  },
-  {
-    quote:
-      "The personalization is unmatched. It feels like having a dedicated health coach available 24/7.",
-    author: "Joshua Owiny",
-    role: "Tech Professional",
+    icon: BarChart3,
+    title: "Transparent impact",
+    desc: "Verified metrics include a reporting period, source, and measurement method.",
   },
 ];
 
@@ -72,8 +51,8 @@ export default function DownloadPage() {
               Get HealthMind Today
             </h1>
             <p className="text-lg sm:text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Join thousands who are already taking control of their mental
-              health with AI-powered personalized support.
+              Download HealthMind from its official Android listing for
+              personalized wellness tools and support resources.
             </p>
 
             <motion.a
@@ -102,10 +81,10 @@ export default function DownloadPage() {
             className="text-center mb-8 sm:mb-10"
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-[#0A0A0A] mb-2">
-              Why Join Today?
+              What to expect
             </h2>
             <p className="text-[#575757]">
-              Early adopters get exclusive benefits and lifetime advantages.
+              Clear product access and transparent public reporting.
             </p>
           </motion.div>
 
@@ -149,7 +128,7 @@ export default function DownloadPage() {
         </div>
       </section>
 
-      {/* Social Proof */}
+      {/* Publication standards */}
       <section className="py-12 sm:py-16 px-4 bg-[#F9FAFB]">
         <div className="max-w-5xl mx-auto">
           <motion.div
@@ -160,39 +139,12 @@ export default function DownloadPage() {
             className="text-center mb-8 sm:mb-12"
           >
             <h2 className="text-2xl sm:text-3xl font-bold text-[#0A0A0A] mb-2">
-              Trusted by Forward-Thinking People
+              Community stories require review
             </h2>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
-            {testimonials.map((testimonial, idx) => (
-              <motion.div
-                key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.1 }}
-                className="bg-white rounded-xl p-6 border border-[#E5E7EB]"
-              >
-                <div className="flex gap-1 mb-3">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-4 h-4 fill-yellow-400 text-yellow-400"
-                    />
-                  ))}
-                </div>
-                <p className="text-[#575757] mb-4 text-sm leading-relaxed">
-                  &ldquo;{testimonial.quote}&rdquo;
-                </p>
-                <div>
-                  <p className="font-semibold text-[#0A0A0A] text-sm">
-                    {testimonial.author}
-                  </p>
-                  <p className="text-xs text-[#999]">{testimonial.role}</p>
-                </div>
-              </motion.div>
-            ))}
+          <div className="mx-auto max-w-3xl rounded-2xl border border-[#E5E7EB] bg-white p-6 text-center sm:p-8">
+            <p className="leading-7 text-[#575757]">HealthMind will publish testimonials, names, photographs, and organizational affiliations only after their accuracy and publication permission are confirmed. No illustrative review is presented as a real user statement.</p>
           </div>
         </div>
       </section>

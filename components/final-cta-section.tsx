@@ -20,9 +20,8 @@ export default function FinalCtaSection() {
             HealthMind is here.
           </h2>
           <p className="text-base sm:text-xl text-white/90 mb-4 sm:mb-5 text-pretty">
-            The world’s first centric, personalized AI mental health companion,
-            designed privately and personally for you to understand, adapt to
-            your wellbeing—everyday and in real life moments.
+            A personalized AI wellness companion designed to support reflection,
+            routines, and access to helpful resources in everyday moments.
           </p>
           <p className="text-sm sm:text-lg text-white/90 mb-6 sm:mb-8 text-pretty">
             A new way to care for the mind. Built with intention. Powered by
