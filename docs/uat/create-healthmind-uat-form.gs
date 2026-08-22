@@ -2,8 +2,28 @@
  * Paste this file into script.google.com and run createHealthMindUatForm().
  * Google will request permission to create a Form in the signed-in account.
  * The edit and respondent URLs are written to the execution log.
+ *
+ * Optional: deploy the script as a Web app and open its /exec URL. doGet()
+ * creates the form once, reuses it on later visits, and displays only the
+ * respondent URL. Keep the Web app restricted to the form owner.
  */
+const HEALTHMIND_UAT_FORM_ID_PROPERTY = 'HEALTHMIND_UAT_FORM_ID';
+
 function createHealthMindUatForm() {
+  const scriptProperties = PropertiesService.getScriptProperties();
+  const existingFormId = scriptProperties.getProperty(HEALTHMIND_UAT_FORM_ID_PROPERTY);
+
+  if (existingFormId) {
+    try {
+      const existingForm = FormApp.openById(existingFormId);
+      logFormUrls_(existingForm);
+      return existingForm;
+    } catch (error) {
+      // The saved form may have been deleted or the owner's access may have changed.
+      scriptProperties.deleteProperty(HEALTHMIND_UAT_FORM_ID_PROPERTY);
+    }
+  }
+
   const form = FormApp.create('HealthMind Internal UAT — 3.1.0+6');
   form
     .setDescription(
@@ -179,8 +199,56 @@ function createHealthMindUatForm() {
   form.addScaleItem().setTitle('Performance').setBounds(1, 5).setLabels('Poor', 'Excellent').setRequired(true);
   form.addScaleItem().setTitle('Trust and privacy clarity').setBounds(1, 5).setLabels('Unclear', 'Very clear').setRequired(true);
 
+  scriptProperties.setProperty(HEALTHMIND_UAT_FORM_ID_PROPERTY, form.getId());
+  logFormUrls_(form);
+  return form;
+}
+
+function doGet() {
+  const form = createHealthMindUatForm();
+  const respondentUrl = escapeHtml_(form.getPublishedUrl());
+  const html = `<!doctype html>
+    <html>
+      <head>
+        <base target="_top">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+          body { margin: 0; background: #f5f7fb; color: #0f172a; font: 16px/1.6 Arial, sans-serif; }
+          main { box-sizing: border-box; max-width: 680px; margin: 10vh auto; padding: 40px; border: 1px solid #dbe4f0; border-radius: 24px; background: #fff; box-shadow: 0 20px 60px rgba(15, 23, 42, .08); }
+          .eyebrow { color: #0e7490; font-size: 12px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
+          h1 { margin: 8px 0 12px; font-size: clamp(28px, 5vw, 42px); line-height: 1.15; }
+          p { color: #475569; }
+          a { display: inline-block; margin-top: 12px; padding: 12px 20px; border-radius: 999px; background: linear-gradient(90deg, #0891b2, #6d28d9); color: #fff; font-weight: 700; text-decoration: none; }
+          small { display: block; margin-top: 24px; color: #64748b; }
+        </style>
+      </head>
+      <body>
+        <main>
+          <div class="eyebrow">HealthMind internal UAT</div>
+          <h1>Your test form is ready.</h1>
+          <p>The same form will be reused when this page is refreshed. Share the respondent link below with approved internal testers.</p>
+          <a href="${respondentUrl}" rel="noopener">Open the UAT form</a>
+          <small>The private edit URL is intentionally not displayed on this Web app page. The owner can retrieve it from the Apps Script execution log.</small>
+        </main>
+      </body>
+    </html>`;
+
+  return HtmlService.createHtmlOutput(html).setTitle('HealthMind UAT form');
+}
+
+function logFormUrls_(form) {
   Logger.log('Edit URL: ' + form.getEditUrl());
   Logger.log('Respondent URL: ' + form.getPublishedUrl());
+}
+
+function escapeHtml_(value) {
+  return String(value).replace(/[&<>"']/g, character => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;'
+  })[character]);
 }
 
 function addScenarioSection(form, title, rows) {

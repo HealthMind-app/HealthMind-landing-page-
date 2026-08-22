@@ -3,6 +3,28 @@
 Target build: **HealthMind 3.1.0+6**
 Scope: Android mobile app, Firebase-backed services, approved web/deep-link flows, and the public impact dashboard.
 
+## Creating the Google Form
+
+Use the Google account that should own the form—currently `healthmindgroup.app@gmail.com`.
+
+### Recommended: run from the Apps Script editor
+
+1. Open [Google Apps Script](https://script.google.com) and create a project.
+2. Paste `create-healthmind-uat-form.gs` into the editor and save.
+3. Select `createHealthMindUatForm` in the function menu and click **Run**.
+4. Approve the requested Google Forms permission.
+5. Open **Execution log** to copy the private edit URL and respondent URL.
+
+### Optional: deploy as a Web app
+
+1. Select **Deploy → New deployment → Web app**.
+2. Set **Execute as** to **Me** (`healthmindgroup.app@gmail.com`).
+3. Restrict **Who has access** to yourself; testers only need the generated Google Form link.
+4. Open the `/exec` URL. The `doGet()` handler creates the form once and displays its respondent link.
+5. After changing the script, use **Deploy → Manage deployments → Edit → New version** before reopening `/exec`.
+
+Do not repeatedly make new deployments to create forms. The script stores the created form ID in Script Properties and reuses the same form.
+
 ## Tester rules
 
 - Use only designated UAT accounts and synthetic information.
