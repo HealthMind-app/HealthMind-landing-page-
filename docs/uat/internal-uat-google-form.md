@@ -1,4 +1,4 @@
-# HealthMind focused internal UAT
+# HealthMind app test and feedback form
 
 Target build: **3.1.0+6**
 
@@ -6,19 +6,19 @@ Expected completion time: **10–15 minutes**
 
 Form length: **4 pages, 26 scenarios**
 
-This version focuses on general usability and the app’s new or substantially updated features. Testers can select **Not tested** for features outside their assignment.
+This version uses plain language and focuses on general usability and the app’s new or substantially updated features. Testers do not need to be developers and can select **Did not try** for features outside their assignment.
 
 ## Form structure
 
 ### Page 1 — Tester setup
 
-- Tester name/internal identifier
-- App build
-- Fresh install or upgrade
-- Device model and Android version
-- Network
-- Language tested
-- Synthetic-data confirmation
+- Name
+- App version, with an **I am not sure** option
+- Whether the app was installed or updated
+- Phone name, with an example
+- Internet connection used
+- App language: English, Kiswahili, another language, or not sure
+- Confirmation that only made-up test information was used
 
 ### Page 2 — General app use
 
@@ -63,13 +63,13 @@ Six essential checks covering:
 
 The final page also asks for highest severity, failed scenario details, one evidence link, useful/confusing features, two ratings, and release confidence.
 
-## Result choices
+## Answers shown to testers
 
-- **Pass** — expected response was observed.
-- **Minor issue** — feature worked safely, with a small usability or presentation problem.
-- **Fail** — expected behavior was missing or wrong.
-- **Blocked** — test could not be completed because of access/environment/earlier failure.
-- **Not tested** — outside the tester’s assignment.
+- **Worked** — the feature behaved as described.
+- **Worked with a small issue** — it worked, but something was confusing or looked wrong.
+- **Did not work** — the described result did not happen.
+- **Could not test** — something prevented the tester from trying it.
+- **Did not try** — outside the tester’s assignment.
 
 ## Release blockers
 
@@ -92,4 +92,4 @@ Immediately escalate:
 4. Run `createHealthMindUatForm` from the function menu.
 5. Approve Google Forms access and copy the edit/respondent links from **Execution log**.
 
-The shortened generator uses a new Script Property key ending in `V2`. If the earlier long form was already created, it is not deleted; archive or delete it manually from Google Drive after confirming the new form.
+The plain-language generator uses a new Script Property key ending in `V3`. If an earlier technical or long form was already created, it is not deleted; archive or delete it manually from Google Drive after confirming the new form.
