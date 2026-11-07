@@ -10,7 +10,8 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "eslint .",
-    "start": "next start"
+    "start": "next start",
+    "waitlist:export": "node --env-file=.env.local scripts/export-waitlist.mjs"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "1.4.0",
