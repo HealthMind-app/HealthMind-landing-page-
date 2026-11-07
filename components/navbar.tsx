@@ -6,6 +6,7 @@ import Logo from "./logo"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { PartyPopper, Menu, X } from "lucide-react"
+import { useWaitlistSignup } from "@/lib/use-waitlist-signup"
 
 const navLinks = [
     { href: "/", label: "Home" },
@@ -21,10 +22,7 @@ const playStoreUrl = "https://play.google.com/store/apps/details?id=com.healthmi
 
 export default function Navbar() {
     const [showInput, setShowInput] = useState(false)
-    const [email, setEmail] = useState("")
-    const [loading, setLoading] = useState(false)
-    const [success, setSuccess] = useState(false)
-    const [error, setError] = useState("")
+    const { email, setEmail, loading, success, setSuccess, error, submit } = useWaitlistSignup("navbar")
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
     const pathname = usePathname()
 
@@ -39,35 +37,11 @@ export default function Navbar() {
     }, [showInput])
 
     const handleSubmit = async () => {
-        if (!email) {
-            setError("Email is required")
-            return
-        }
-
-        setLoading(true)
-        setError("")
-
-        try {
-            const res = await fetch("/api/waitlist", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email }),
-            })
-
-            if (res.ok) {
-                setSuccess(true)
-                setEmail("")
-                setTimeout(() => {
-                    setSuccess(false)
-                    setShowInput(false)
-                }, 1500)
-            } else {
-                setError("Something went wrong, please try again.")
-            }
-        } catch {
-            setError("Network error, please try again.")
-        } finally {
-            setLoading(false)
+        if (await submit()) {
+            setTimeout(() => {
+                setSuccess(false)
+                setShowInput(false)
+            }, 1500)
         }
     }
 

@@ -18,6 +18,9 @@ yarn-error.log*
 .dev-server.*.log
 firebase-debug.log
 users.csv
+.feedback-preview/
+feedback-functions/node_modules/
+feedback-functions/generated/
 
 # env files
 .env*
@@ -33,3 +36,7 @@ next-env.d.ts
 /app/api/_credentials/google-credentials.json
 
 .vercel
+
+# Local-only env files
+env.download
+!.env.example

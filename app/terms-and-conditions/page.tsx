@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { CONTACT_EMAIL } from "@/lib/site";
 import {
   ArrowLeft,
   FileText,
@@ -334,10 +335,10 @@ export default function TermsAndConditionsPage() {
             <p>
               <strong>Email:</strong>{" "}
               <a
-                href="mailto:healthmindgroup.app@gmail.com"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="text-green-600 hover:underline"
               >
-                healthmindgroup.app@gmail.com
+                {CONTACT_EMAIL}
               </a>
             </p>
             <p>

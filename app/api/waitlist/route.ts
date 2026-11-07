@@ -1,102 +1,55 @@
-import { google } from "googleapis";
-import { type NextRequest, NextResponse } from "next/server";
-import path from "node:path";
+import { FieldValue } from "firebase-admin/firestore";
+import { adminDb } from "@/lib/server/firestore";
+import { enforceRateLimit } from "@/lib/server/rate-limit";
+import { assertSameOrigin, clientIp, normalizeEmail, readJson, sha256 } from "@/lib/server/request";
+import { errorResponse } from "@/lib/server/respond";
 
-interface WaitlistEntry {
-  email: string;
-  timestamp: string;
-}
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
 
-const SHEET_ID = process.env.GOOGLE_SHEETS_ID;
+const SOURCES = new Set(["hero", "navbar", "final-cta"]);
 
-export async function POST(request: NextRequest) {
+/**
+ * Stores signups in Firestore `website_waitlist`, one document per email
+ * (keyed by its SHA-256), so repeat signups are idempotent. Export with
+ * `npm run waitlist:export`.
+ */
+export async function POST(request: Request) {
   try {
-    // Check if Google Sheets ID is configured
-    if (!SHEET_ID) {
-      console.error("GOOGLE_SHEETS_ID environment variable is not set");
-      return NextResponse.json(
-        { error: "Server configuration error. Please contact support." },
-        { status: 500 }
-      );
+    assertSameOrigin(request);
+    const body = await readJson(request);
+
+    // Honeypot: real visitors never see or fill this field.
+    if (typeof body.company === "string" && body.company.trim() !== "") {
+      return Response.json({ success: true });
     }
 
-    const { email, name } = await request.json();
+    const email = normalizeEmail(body.email);
+    const source = typeof body.source === "string" && SOURCES.has(body.source) ? body.source : "unknown";
 
-    if (!email || typeof email !== "string") {
-      return NextResponse.json(
-        { error: "Valid email is required" },
-        { status: 400 }
-      );
-    }
+    await enforceRateLimit("waitlist", clientIp(request), 5, 10 * 60_000);
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-      return NextResponse.json(
-        { error: "Invalid email format" },
-        { status: 400 }
-      );
-    }
+    const db = adminDb();
+    const ref = db.collection("website_waitlist").doc(sha256(email));
+    await db.runTransaction(async (transaction) => {
+      const existing = await transaction.get(ref);
+      if (existing.exists) {
+        transaction.update(ref, { lastSubmittedAt: FieldValue.serverTimestamp(), submissions: FieldValue.increment(1) });
+      } else {
+        transaction.create(ref, {
+          email,
+          source,
+          createdAt: FieldValue.serverTimestamp(),
+          lastSubmittedAt: FieldValue.serverTimestamp(),
+          submissions: 1,
+          schemaVersion: 1,
+        });
+      }
+    });
 
-    const entry: WaitlistEntry = {
-      email,
-      timestamp: new Date().toLocaleDateString("en-US", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        second: "2-digit",
-      }),
-    };
-
-    await appendToGoogleSheet(entry);
-
-    return NextResponse.json({ success: true });
+    // Same response whether or not the email was already listed.
+    return Response.json({ success: true }, { headers: { "Cache-Control": "no-store" } });
   } catch (error) {
-    console.error("WAITLIST ERROR:", error);
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
+    return errorResponse("waitlist", error);
   }
-}
-
-async function appendToGoogleSheet(entry: WaitlistEntry) {
-  let auth;
-
-  // Check if we're in Vercel (production/preview)
-  if (
-    process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL &&
-    process.env.GOOGLE_PRIVATE_KEY
-  ) {
-    // Use environment variables in production
-    auth = new google.auth.GoogleAuth({
-      credentials: {
-        client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
-        private_key: process.env.GOOGLE_PRIVATE_KEY.replace(/\\n/g, "\n"),
-      },
-      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-    });
-  } else {
-    // Use credentials file in local development
-    const credentialsPath = path.join(
-      process.cwd(),
-      "app/api/_credentials/google-credentials.json"
-    );
-    auth = new google.auth.GoogleAuth({
-      keyFile: credentialsPath,
-      scopes: ["https://www.googleapis.com/auth/spreadsheets"],
-    });
-  }
-
-  const sheets = google.sheets({ version: "v4", auth });
-
-  await sheets.spreadsheets.values.append({
-    spreadsheetId: SHEET_ID,
-    range: "Sheet1!A:C",
-    valueInputOption: "USER_ENTERED",
-    requestBody: {
-      values: [[entry.email, entry.timestamp]],
-    },
-  });
 }

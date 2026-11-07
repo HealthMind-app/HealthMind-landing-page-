@@ -2,23 +2,28 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft, Mail, ShieldCheck, Trash2, Clock, Database } from "lucide-react";
+import { ArrowLeft, Mail, ShieldCheck, Trash2, Clock, Database, Smartphone, Globe } from "lucide-react";
+import AccountDeletionForm from "@/components/account-deletion-form";
+import { CONTACT_EMAIL } from "@/lib/site";
 
 export default function AccountDeletionPage() {
-  const email = "healthmindgroup.app@gmail.com";
+  const email = CONTACT_EMAIL;
 
-  const steps = [
-    "Open your email app and send a message to healthmindgroup.app@gmail.com.",
-    "Use the subject line: Account Deletion Request.",
-    "Include the email address or phone number connected to your HealthMind account.",
-    "We may ask you to verify ownership of the account before deletion is completed.",
+  const inAppSteps = [
+    "Open the HealthMind app and sign in.",
+    "Tap the “You” tab, then scroll to the bottom of your account screen.",
+    "Tap the delete account button and confirm.",
+    "If you haven’t signed in recently, the app will ask you to sign in again first.",
   ];
 
   const deletedData = [
-    "Account profile information, including name and contact details",
-    "Mood tracking entries, wellness check-ins, and habit tracking data",
-    "Journal entries, notes, and AI chatbot conversation history",
-    "Medication reminders, self-assessment answers, and app preferences",
+    "Your sign-in account and profile information, including name and contact details",
+    "Mood tracking entries, wellness check-ins, assessments, and streaks",
+    "Journal entries, notes, and Alverna (AI companion) conversation history",
+    "Medications, reminder settings, and reminder call logs",
+    "Goals, weekly plans, self-care activity, and notifications",
+    "Derived wellness insights and risk signals calculated from your data",
+    "Files you uploaded, such as profile photos",
   ];
 
   const retainedData = [
@@ -50,7 +55,7 @@ export default function AccountDeletionPage() {
               Request deletion of your HealthMind account and associated personal data.
             </p>
             <p className="text-sm sm:text-base text-white/80 mt-2">
-              Last Updated: May 25, 2026
+              Last Updated: November 7, 2026
             </p>
           </motion.div>
         </div>
@@ -69,27 +74,43 @@ export default function AccountDeletionPage() {
             </div>
             <div>
               <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-3">
-                How to request account deletion
+                How to delete your account
               </h2>
               <p className="text-gray-700">
-                If you created a HealthMind account, you can request deletion at any time by contacting our support team.
+                You can delete your HealthMind account at any time. The fastest way is inside the app. If you no longer have the app, use the form below.
               </p>
             </div>
           </div>
-          <ol className="list-decimal pl-6 space-y-3 text-gray-700 mt-6">
-            {steps.map((step) => (
+
+          <h3 className="mt-6 flex items-center gap-2 text-lg font-semibold text-gray-900">
+            <Smartphone className="h-5 w-5 text-green-600" /> Option 1: Delete instantly in the app
+          </h3>
+          <ol className="list-decimal pl-6 space-y-2 text-gray-700 mt-3">
+            {inAppSteps.map((step) => (
               <li key={step}>{step}</li>
             ))}
           </ol>
-          <div className="mt-6 bg-green-50 border border-green-100 rounded-xl p-4">
-            <p className="text-gray-800 font-medium mb-3">Send your request to:</p>
-            <a
-              href={`mailto:${email}?subject=Account%20Deletion%20Request`}
-              className="inline-flex items-center gap-2 text-green-700 hover:text-green-800 font-semibold break-all"
-            >
+          <p className="mt-3 text-sm text-gray-600">
+            In-app deletion takes effect immediately and removes your data from our live systems right away.
+          </p>
+
+          <h3 className="mt-8 flex items-center gap-2 text-lg font-semibold text-gray-900">
+            <Globe className="h-5 w-5 text-green-600" /> Option 2: Request deletion on the web
+          </h3>
+          <p className="mt-2 text-gray-700">
+            Enter the email address you use for HealthMind. To protect you, we&apos;ll contact you at that address to confirm you own the account before anything is deleted.
+          </p>
+          <AccountDeletionForm />
+
+          <div className="mt-8 bg-green-50 border border-green-100 rounded-xl p-4">
+            <p className="text-gray-800 font-medium mb-2">Prefer email? Write to us at:</p>
+            <p className="inline-flex items-center gap-2 text-green-700 font-semibold break-all">
               <Mail className="w-4 h-4 flex-shrink-0" />
-              {email}
-            </a>
+              <a href={`mailto:${email}?subject=Account%20Deletion%20Request`} className="hover:text-green-800">
+                {email}
+              </a>
+            </p>
+            <p className="mt-2 text-sm text-gray-600">Use the subject &ldquo;Account Deletion Request&rdquo; and include the email address on your account.</p>
           </div>
         </motion.section>
 
@@ -153,7 +174,7 @@ export default function AccountDeletionPage() {
             </h2>
           </div>
           <p className="text-gray-700 mb-4">
-            We aim to respond to account deletion requests within 48 hours. After account ownership is verified, most account data will be deleted within 30 days.
+            Deletion in the app is immediate. For web and email requests, we aim to respond within 48 hours, and after account ownership is verified, your account data will be deleted within 30 days.
           </p>
           <p className="text-gray-700">
             Some deleted data may remain in encrypted backups for up to 90 days before automatic removal from backup systems.

@@ -10,7 +10,6 @@ const _geistMono = Geist_Mono({ subsets: ["latin"] })
 export const metadata: Metadata = {
   title: "HealthMind - Your AI-Powered Mental Health Companion",
   description: "HealthMind combines AI with personalized wellness insights to help you take control of your health.",
-  generator: "v0.app",
   icons: {
     icon: [
       {

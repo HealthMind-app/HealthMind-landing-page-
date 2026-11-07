@@ -46,7 +46,7 @@ export default function FinalCtaSection() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mt-8 sm:mt-10"
           >
-            <WaitlistForm />
+            <WaitlistForm source="final-cta" />
           </motion.div>
         </motion.div>
       </div>
