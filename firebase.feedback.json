@@ -1,0 +1,9 @@
+{
+  "functions": [{
+    "source": "feedback-functions",
+    "codebase": "healthmind-feedback",
+    "runtime": "nodejs22",
+    "ignore": ["node_modules", ".git", "*.log", ".env*"],
+    "predeploy": ["node scripts/build-feedback-function.mjs"]
+  }]
+}
