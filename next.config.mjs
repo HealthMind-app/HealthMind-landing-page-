@@ -9,17 +9,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  async redirects() {
-    // Takes effect once www.healthmindgroup.com is added to the Vercel project.
-    return [
-      {
-        source: "/:path*",
-        has: [{ type: "host", value: "www.healthmindgroup.com" }],
-        destination: "https://healthmindgroup.com/:path*",
-        permanent: true,
-      },
-    ]
-  },
+  // www <-> apex redirects are configured on the Vercel domain settings only.
+  // Do not add a host redirect here: combined with the domain setting it loops.
   async headers() {
     return [
       {
