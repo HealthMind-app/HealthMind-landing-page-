@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import { LEGAL } from "@/lib/legal"
 import Logo from "./logo";
 
 export default function Footer() {
@@ -124,6 +125,14 @@ export default function Footer() {
               </li>
               <li>
                 <a
+                  href="/consumer-health-data"
+                  className="hover:text-[#1E6FFB] transition-colors"
+                >
+                  Consumer Health Data
+                </a>
+              </li>
+              <li>
+                <a
                   href="/terms-and-conditions"
                   className="hover:text-[#1E6FFB] transition-colors"
                 >
@@ -181,11 +190,15 @@ export default function Footer() {
           className="text-center"
         >
           <p className="text-xs sm:text-sm text-white/60 mb-3">
-            © {currentYear} HealthMind Group. All Rights Reserved.
+            © {currentYear} {LEGAL.entityName}. All Rights Reserved.
           </p>
           <div className="flex flex-wrap justify-center gap-4 text-xs text-white/50">
             <a href="/privacy-policy" className="hover:text-[#1E6FFB] transition-colors">
               Privacy Policy
+            </a>
+            <span>|</span>
+            <a href="/consumer-health-data" className="hover:text-[#1E6FFB] transition-colors">
+              Consumer Health Data
             </a>
             <span>|</span>
             <a href="/terms-and-conditions" className="hover:text-[#1E6FFB] transition-colors">

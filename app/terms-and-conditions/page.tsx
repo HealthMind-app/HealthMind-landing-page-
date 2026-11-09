@@ -1,477 +1,184 @@
-"use client";
+import type { Metadata } from "next"
+import Link from "next/link"
+import LegalPage, { type LegalSection } from "@/components/legal/legal-page"
+import { LEGAL } from "@/lib/legal"
 
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { CONTACT_EMAIL } from "@/lib/site";
-import {
-  ArrowLeft,
-  FileText,
-  Shield,
-  AlertTriangle,
-  Users,
-  Scale,
-  Brain,
-  Lock,
-} from "lucide-react";
+export const metadata: Metadata = {
+  title: "Terms & Conditions | HealthMind",
+  description: "The terms for using the HealthMind app and website.",
+}
 
-export default function TermsAndConditionsPage() {
-  const sections = [
-    {
-      id: "introduction",
-      title: "1. Introduction & Acceptance",
-      icon: FileText,
-      content: (
-        <>
-          <p>
-            By downloading or using the HealthMind mobile application ("App"),
-            run by HealthMind Group, you agree to these Terms and Conditions
-            ("Terms"). If you don't agree, you must not use the App.
-          </p>
-          <p className="font-medium">These Terms apply to all users.</p>
-        </>
-      ),
-    },
-    {
-      id: "eligibility",
-      title: "2. Who Can Use This App",
-      icon: Users,
-      content: (
-        <>
-          <p className="mb-3">You must be:</p>
-          <ul className="list-disc pl-6 space-y-1 mb-3">
-            <li>At least 18 years old, or</li>
-            <li>Using the App with parent or guardian permission</li>
-          </ul>
-          <p>
-            You confirm that all information you give is accurate and legal.
-          </p>
-        </>
-      ),
-    },
-    {
-      id: "medical-disclaimer",
-      title: "3. Medical & AI Disclaimer (IMPORTANT)",
-      icon: AlertTriangle,
-      content: (
-        <>
-          <div className="bg-red-50 border-l-4 border-red-500 p-4 mb-4">
-            <p className="font-bold text-red-800 text-lg mb-3">
-              ⚠️ IMPORTANT NOTICE:
-            </p>
-            <p className="text-red-800 mb-3">
-              HealthMind helps with mental wellness and self-development using
-              AI, but:
-            </p>
-            <ul className="list-disc pl-6 space-y-1 text-red-800">
-              <li>
-                The App does <strong>NOT</strong> diagnose medical or mental
-                health conditions
-              </li>
-              <li>
-                The App does <strong>NOT</strong> replace real doctors or
-                therapists
-              </li>
-              <li>
-                All AI responses are for information only, not medical advice
-              </li>
-              <li>You must see a real doctor for diagnosis or treatment</li>
-            </ul>
-          </div>
+const email = <a href={`mailto:${LEGAL.privacyEmail}`}>{LEGAL.privacyEmail}</a>
 
-          <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4">
-            <p className="font-semibold text-yellow-900 mb-2">
-              In an emergency or if you have thoughts of self-harm, call for
-              help now:
-            </p>
-            <ul className="list-disc pl-6 space-y-1 text-yellow-900">
-              <li>Emergency: 112 or 999</li>
-              <li>Mental Health Helpline: +256 800 100 066</li>
-            </ul>
-          </div>
-        </>
-      ),
-    },
-    {
-      id: "account",
-      title: "4. Your Account",
-      icon: Lock,
-      content: (
-        <>
-          <p className="mb-3">You are responsible for:</p>
-          <ul className="list-disc pl-6 space-y-1 mb-3">
-            <li>Keeping your login details secret</li>
-            <li>All activity on your account</li>
-          </ul>
-          <p>
-            HealthMind is not responsible for unauthorized access caused by your
-            carelessness.
-          </p>
-        </>
-      ),
-    },
-    {
-      id: "conduct",
-      title: "5. How to Behave",
-      icon: Shield,
-      content: (
-        <>
-          <p className="mb-3 font-medium">You agree NOT to:</p>
-          <ul className="list-disc pl-6 space-y-1 mb-4">
-            <li>Share harmful, illegal, abusive, or misleading content</li>
-            <li>Harass, bully, threaten, or pretend to be others</li>
-            <li>Misuse AI or community features</li>
-            <li>Try to hack or break the App</li>
-          </ul>
-
-          <p className="mb-2 font-medium">
-            Breaking these rules may result in:
-          </p>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>Account suspension</li>
-            <li>Permanent ban</li>
-            <li>Legal action if needed</li>
-          </ul>
-        </>
-      ),
-    },
-    {
-      id: "ai-features",
-      title: "6. AI Feature Use",
-      icon: Brain,
-      content: (
-        <>
-          <p className="mb-3">HealthMind's AI:</p>
-          <ul className="list-disc pl-6 space-y-1 mb-4">
-            <li>Creates wellbeing insights</li>
-            <li>Is not perfect</li>
-            <li>May give wrong or incomplete information</li>
-          </ul>
-
-          <p className="mb-4">
-            You are responsible for decisions based on AI advice.
-          </p>
-
-          <div className="bg-orange-50 border-l-4 border-orange-500 p-4">
-            <p className="font-semibold text-orange-800">
-              ⚠️ Remember: AI is a tool to support you, not replace professional
-              medical care.
-            </p>
-          </div>
-        </>
-      ),
-    },
-    {
-      id: "intellectual-property",
-      title: "7. Intellectual Property",
-      icon: Scale,
-      content: (
-        <>
-          <p className="mb-3">All content, including:</p>
-          <ul className="list-disc pl-6 space-y-1 mb-4">
-            <li>Logos</li>
-            <li>Software</li>
-            <li>Text</li>
-            <li>Design</li>
-            <li>AI models</li>
-          </ul>
-
-          <p className="mb-4">
-            belongs to HealthMind Group and is protected by law.
-          </p>
-
-          <p className="font-semibold mb-4">
-            Copyright © 2025 HealthMind Group. All rights reserved.
-          </p>
-
-          <p>
-            You cannot copy, sell, or share this content without permission.
-          </p>
-        </>
-      ),
-    },
-  ];
-
-  const additionalSections = [
-    {
-      title: "8. Your Data",
-      content: (
+const sections: LegalSection[] = [
+  {
+    id: "agreement",
+    title: "About these terms",
+    content: (
+      <>
         <p>
-          User data is handled according to our{" "}
-          <Link
-            href="/privacy-policy"
-            className="text-green-600 hover:underline font-medium"
-          >
-            Privacy Policy
-          </Link>
-          . By using the App, you agree to how we process your data as described
-          in that policy.
+          These Terms are an agreement between you and <strong>{LEGAL.entityName}</strong>, {LEGAL.registeredAddress}{" "}
+          (&quot;HealthMind&quot;, &quot;we&quot;, &quot;us&quot;), for using the HealthMind mobile app and website.
+          You accept them when you create an account. If you do not agree, please do not use HealthMind.
         </p>
-      ),
-    },
-    {
-      title: "9. Third-Party Services",
-      content: (
-        <>
-          <p className="mb-3">The App may integrate:</p>
-          <ul className="list-disc pl-6 space-y-1 mb-3">
-            <li>APIs</li>
-            <li>Analytics tools</li>
-            <li>Payment processors</li>
-          </ul>
-          <p>
-            HealthMind is not responsible for third-party services outside its
-            control.
-          </p>
-        </>
-      ),
-    },
-    {
-      title: "10. App Updates",
-      content: (
-        <>
-          <p className="mb-3">We may:</p>
-          <ul className="list-disc pl-6 space-y-1 mb-3">
-            <li>Update or change features</li>
-            <li>Fix bugs or add security updates</li>
-            <li>Remove services without notice</li>
-          </ul>
-          <p className="font-medium">We are NOT responsible for downtime.</p>
-        </>
-      ),
-    },
-    {
-      title: "11. Closing Accounts",
-      content: (
-        <>
-          <p className="mb-3">HealthMind can:</p>
-          <ul className="list-disc pl-6 space-y-1 mb-3">
-            <li>Suspend or close accounts that break the rules</li>
-            <li>Remove harmful users without notice</li>
-          </ul>
-          <p>Users can also delete their accounts anytime.</p>
-        </>
-      ),
-    },
-    {
-      title: "12. Our Limits of Responsibility",
-      content: (
-        <>
-          <p className="mb-3">
-            To the maximum extent allowed by law, HealthMind is{" "}
-            <strong>NOT</strong> responsible for:
-          </p>
-          <ul className="list-disc pl-6 space-y-1 mb-3">
-            <li>Emotional distress</li>
-            <li>Data loss</li>
-            <li>Financial losses</li>
-            <li>Health decisions made using the App</li>
-          </ul>
-          <p className="font-semibold text-gray-700">
-            You use the App at your own risk.
-          </p>
-        </>
-      ),
-    },
-    {
-      title: "13. Your Responsibility",
-      content: (
-        <>
-          <p className="mb-3">
-            You agree to protect HealthMind from any claims, damages, or legal
-            actions that come from:
-          </p>
-          <ul className="list-disc pl-6 space-y-1">
-            <li>Your misuse of the App</li>
-            <li>Breaking these Terms</li>
-            <li>Harm to other users</li>
-          </ul>
-        </>
-      ),
-    },
-    {
-      title: "14. Governing Law & Dispute Resolution",
-      content: (
-        <>
-          <p className="mb-4">
-            These Terms follow the laws of the{" "}
-            <strong>Republic of Uganda</strong>.
-          </p>
+        <p>
+          Our <Link href="/privacy-policy">Privacy Policy</Link> explains how we handle your information and forms part
+          of these Terms.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "eligibility",
+    title: "Who can use HealthMind",
+    content: (
+      <p>
+        You must be at least <strong>{LEGAL.minimumAge} years old</strong> and able to agree to these Terms. You must
+        give accurate information when you sign up.
+      </p>
+    ),
+  },
+  {
+    id: "not-medical",
+    title: "HealthMind is not a medical service",
+    content: (
+      <>
+        <ul>
+          <li>HealthMind supports mental wellbeing and self-reflection. It does <strong>not</strong> diagnose, treat or prevent any medical or mental health condition.</li>
+          <li>It does not replace doctors, therapists or other professionals. Always seek professional advice about your health.</li>
+          <li>Content in the app, including Alverna&apos;s replies, is general information, not medical advice.</li>
+        </ul>
+        <p>
+          <strong>In an emergency</strong>, or if you are thinking about harming yourself or others, contact local
+          emergency services now. In Uganda, call 999 or 112. Elsewhere, find a crisis line at{" "}
+          <a href="https://findahelpline.com" target="_blank" rel="noopener noreferrer">findahelpline.com</a>.
+          HealthMind cannot monitor conversations in real time or send help.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "ai",
+    title: "Alverna and AI features",
+    content: (
+      <ul>
+        <li>Alverna is an AI companion, not a person. Its replies are generated automatically by AI.</li>
+        <li>AI can be wrong, incomplete or unsuitable for your situation. Use your own judgement and do not rely on it for medical, legal or financial decisions.</li>
+        <li>Wellness insights and signals in the app are estimates to support you, not diagnoses.</li>
+      </ul>
+    ),
+  },
+  {
+    id: "account",
+    title: "Your account",
+    content: (
+      <ul>
+        <li>Keep your password private and tell us at {email} if you think someone else has accessed your account.</li>
+        <li>You are responsible for activity on your account, except where it results from our own failure.</li>
+        <li>You can delete your account at any time in the app. See our <Link href="/account-deletion">account deletion page</Link>.</li>
+      </ul>
+    ),
+  },
+  {
+    id: "acceptable-use",
+    title: "Acceptable use",
+    content: (
+      <>
+        <p>You agree not to:</p>
+        <ul>
+          <li>Use HealthMind for anything illegal, harmful, abusive or misleading.</li>
+          <li>Harass, threaten or impersonate anyone.</li>
+          <li>Try to get Alverna to produce harmful content, or misuse the AI features.</li>
+          <li>Try to access other people&apos;s data, break our security, or overload or disrupt the service.</li>
+          <li>Copy, resell or reverse-engineer the app, except where the law allows it.</li>
+        </ul>
+        <p>
+          If you break these rules, we may suspend or close your account. Unless there is a safety or legal reason not
+          to, we will tell you why and give you a chance to respond.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "ip",
+    title: "Our content and yours",
+    content: (
+      <>
+        <p>
+          The HealthMind app, name, logos, design, text and software belong to {LEGAL.entityName} and are protected by
+          law. We give you a personal, non-transferable licence to use the app for your own wellbeing.
+        </p>
+        <p>
+          What you write in HealthMind, such as journal entries and messages, stays yours. You allow us to process it
+          only to provide the service to you, as described in the Privacy Policy.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "service",
+    title: "Changes to the service",
+    content: (
+      <p>
+        HealthMind is currently free. We may add, change or remove features to improve the service or for security
+        reasons. If we plan to stop providing HealthMind, we will give you reasonable notice so you can download your
+        information. We try to keep HealthMind available but cannot promise it will always be uninterrupted or
+        error-free.
+      </p>
+    ),
+  },
+  {
+    id: "liability",
+    title: "Liability",
+    content: (
+      <>
+        <p>
+          HealthMind is provided &quot;as is&quot;. To the extent the law allows, we are not liable for indirect or
+          consequential losses, or for decisions you make based on content in the app.
+        </p>
+        <p>
+          Nothing in these Terms limits liability that cannot be limited by law, such as liability for death or personal
+          injury caused by negligence, for fraud, or your rights as a consumer under the law of the country where you
+          live.
+        </p>
+      </>
+    ),
+  },
+  {
+    id: "law",
+    title: "Governing law and disputes",
+    content: (
+      <p>
+        These Terms are governed by the laws of the Republic of Uganda. If you have a concern, please contact us first
+        so we can try to resolve it informally. If you are a consumer, you also keep the protection of the mandatory laws
+        of the country where you live and may bring proceedings in your local courts.
+      </p>
+    ),
+  },
+  {
+    id: "changes",
+    title: "Changes to these terms",
+    content: (
+      <p>
+        When we update these Terms, we change the date at the top. For significant changes, we tell you in the app or by
+        email before they take effect and, where required, ask you to accept them again. If you do not agree, you can
+        delete your account.
+      </p>
+    ),
+  },
+  {
+    id: "contact",
+    title: "Contact us",
+    content: (
+      <ul>
+        <li><strong>Company:</strong> {LEGAL.entityName}, {LEGAL.registeredAddress}</li>
+        <li><strong>Email:</strong> {email}</li>
+        <li><strong>Phone:</strong> {LEGAL.phone} (Monday to Friday, 9:00 to 17:00 East Africa Time)</li>
+      </ul>
+    ),
+  },
+]
 
-          <p className="mb-4">
-            If there is any dispute about the HealthMind App, both parties will
-            first try to resolve it through friendly discussion.
-          </p>
-
-          <p className="mb-4">
-            This does not limit any consumer protection rights or legal remedies
-            in your country.
-          </p>
-
-          <p>
-            HealthMind does not require mandatory arbitration where such rules
-            are not allowed by law or platform policy.
-          </p>
-        </>
-      ),
-    },
-    {
-      title: "15. Changes to These Terms",
-      content: (
-        <>
-          <p className="mb-3">We may update these Terms at any time.</p>
-          <p>If you keep using the App, it means you accept the new Terms.</p>
-        </>
-      ),
-    },
-    {
-      title: "16. Contact Information",
-      content: (
-        <>
-          <p className="mb-4">
-            For questions, concerns, or support regarding these Terms &
-            Conditions:
-          </p>
-          <div className="bg-gray-50 p-4 rounded-lg space-y-2">
-            <p>
-              <strong>Email:</strong>{" "}
-              <a
-                href={`mailto:${CONTACT_EMAIL}`}
-                className="text-green-600 hover:underline"
-              >
-                {CONTACT_EMAIL}
-              </a>
-            </p>
-            <p>
-              <strong>Phone:</strong>{" "}
-              <a
-                href="tel:+256761151329"
-                className="text-green-600 hover:underline"
-              >
-                +256 761 151 329
-              </a>
-            </p>
-            <p className="text-sm text-gray-600">
-              Support Hours: Monday - Friday, 9:00 AM - 5:00 PM (EAT)
-            </p>
-          </div>
-        </>
-      ),
-    },
-  ];
-
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-50/30 to-white">
-      {/* Header */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-500 text-white py-12 sm:py-16 px-4">
-        <div className="max-w-4xl mx-auto">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-2 text-white/90 hover:text-white transition-colors mb-6"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Home
-          </Link>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              Terms and Conditions
-            </h1>
-            <p className="text-lg sm:text-xl text-white/90">
-              Effective Date: December 22, 2025
-            </p>
-            <p className="text-sm sm:text-base text-white/80 mt-2">
-              Last Updated: December 22, 2025
-            </p>
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Content */}
-      <div className="max-w-4xl mx-auto px-4 py-12 sm:py-16">
-        {/* Main Sections with Icons */}
-        <div className="space-y-12">
-          {sections.map((section, index) => {
-            const Icon = section.icon;
-            return (
-              <motion.section
-                key={section.id}
-                id={section.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100"
-              >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <Icon className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
-                    {section.title}
-                  </h2>
-                </div>
-                <div className="prose prose-gray max-w-none space-y-4 text-gray-700">
-                  {section.content}
-                </div>
-              </motion.section>
-            );
-          })}
-
-          {/* Additional Sections */}
-          {additionalSections.map((section, index) => (
-            <motion.section
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{
-                duration: 0.5,
-                delay: (sections.length + index) * 0.1,
-              }}
-              className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm border border-gray-100"
-            >
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">
-                {section.title}
-              </h2>
-              <div className="prose prose-gray max-w-none space-y-4 text-gray-700">
-                {section.content}
-              </div>
-            </motion.section>
-          ))}
-        </div>
-
-        {/* Footer */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="mt-12 pt-8 border-t border-gray-200 text-center"
-        >
-          <p className="text-gray-600 mb-4">
-            Thank you for using HealthMind responsibly.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium transition-colors"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Return to HealthMind Home
-            </Link>
-            <span className="text-gray-400 hidden sm:inline">|</span>
-            <Link
-              href="/privacy-policy"
-              className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
-            >
-              View Privacy Policy
-            </Link>
-          </div>
-        </motion.div>
-      </div>
-    </div>
-  );
+export default function TermsPage() {
+  return <LegalPage title="Terms & Conditions" sections={sections} />
 }
