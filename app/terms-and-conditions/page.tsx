@@ -32,10 +32,16 @@ const sections: LegalSection[] = [
     id: "eligibility",
     title: "Who can use HealthMind",
     content: (
-      <p>
-        You must be at least <strong>{LEGAL.minimumAge} years old</strong> and able to agree to these Terms. You must
-        give accurate information when you sign up.
-      </p>
+      <>
+        <ul>
+          <li>You must be at least <strong>{LEGAL.minimumAge} years old</strong> to use HealthMind.</li>
+          <li>
+            If you are under {LEGAL.adultAge}, a parent or guardian must approve your account and agree to these Terms
+            for you. HealthMind stays inactive until they do.
+          </li>
+          <li>You must give accurate information, including your real date of birth, when you sign up.</li>
+        </ul>
+      </>
     ),
   },
   {

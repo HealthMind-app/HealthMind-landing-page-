@@ -44,6 +44,10 @@ const sections: LegalSection[] = [
             your HealthMind data.
           </li>
           <li>
+            HealthMind is for people aged {LEGAL.minimumAge} and over. Anyone under {LEGAL.adultAge} needs a parent or
+            guardian to approve their account before using it.
+          </li>
+          <li>
             HealthMind is not an emergency or medical service. If you are in danger, contact local emergency services
             straight away.
           </li>
@@ -77,6 +81,11 @@ const sections: LegalSection[] = [
           <li>
             <strong>Account details:</strong> first and last name, display name, email address and password. Passwords
             are handled by Google Firebase Authentication and are never visible to us.
+          </li>
+          <li>
+            <strong>Date of birth</strong>, to check you are old enough and whether a parent or guardian needs to
+            approve your account, and, for users under {LEGAL.adultAge}, <strong>a parent or guardian&apos;s email
+            address</strong> and their decision.
           </li>
           <li>
             <strong>Profile:</strong> optional details such as a profile photo, language, goals and coping strategies.
@@ -156,6 +165,11 @@ const sections: LegalSection[] = [
           head={["What we do", "Information used", "Legal basis"]}
           rows={[
             ["Create and run your account", "Account details, profile", "Performing our contract with you"],
+            [
+              `Check age and, for users under ${LEGAL.adultAge}, get a parent or guardian's approval`,
+              "Date of birth, guardian email, guardian's decision",
+              "Legal obligation; for under-18s, the consent of a parent or guardian",
+            ],
             [
               "Provide wellness tracking, journaling, insights, plans, reminders and progress",
               "Health and wellbeing information, app activity",
@@ -263,7 +277,7 @@ const sections: LegalSection[] = [
               "Data stored in South Africa; servers in the United States",
             ],
             ["Google Gemini API", "Generates Alverna's replies and some in-app suggestions", "United States"],
-            ["Resend", "Sends our emails", "United States"],
+            ["Resend", "Sends our emails, including approval requests to parents and guardians", "United States"],
             [
               "Twilio",
               "Places medication reminder phone calls, if you turn them on. Receives your phone number, medication name and dose",
@@ -389,14 +403,31 @@ const sections: LegalSection[] = [
   },
   {
     id: "age",
-    title: "Age requirement",
+    title: "Children and teenagers",
     content: (
-      <p>
-        HealthMind is only for people aged <strong>{LEGAL.minimumAge} or older</strong>, and we ask every user to
-        confirm this when creating an account. We do not knowingly collect information from anyone younger. If you
-        believe someone under {LEGAL.minimumAge} is using HealthMind, email {email} and we will delete their account and
-        information.
-      </p>
+      <>
+        <ul>
+          <li>
+            <strong>Under {LEGAL.minimumAge}:</strong> HealthMind is not available. We ask for a date of birth at sign-up
+            and do not create accounts for anyone younger.
+          </li>
+          <li>
+            <strong>{LEGAL.minimumAge} to {LEGAL.adultAge - 1}:</strong> a parent or guardian must approve the account
+            before HealthMind processes any health information. We email the parent or guardian a link explaining how
+            HealthMind works. Until they approve, the app collects only the sign-up details and basic app analytics. They can withdraw
+            approval or ask us to delete the account at any time by emailing {email}. Approving does not give the
+            parent or guardian access to what the teenager writes.
+          </li>
+          <li>
+            For teenagers, Alverna follows extra safety rules: age-appropriate language, stricter content filters, and
+            encouragement to involve a trusted adult.
+          </li>
+        </ul>
+        <p>
+          If you believe a child under {LEGAL.minimumAge} is using HealthMind, or a teenager is using it without
+          approval, email {email} and we will act promptly, including deleting the account.
+        </p>
+      </>
     ),
   },
   {
@@ -418,7 +449,8 @@ const sections: LegalSection[] = [
         <h3 id="region-uganda" className="scroll-mt-24">Uganda</h3>
         <p>
           We process personal information under the Data Protection and Privacy Act, 2019. Health information is
-          special personal data, which we process only with your consent. You may access, correct and object to the
+          special personal data, which we process only with your consent. For anyone under {LEGAL.adultAge}, we process
+          personal data only with the prior consent of a parent or guardian. You may access, correct and object to the
           processing of your information, and you may complain to the Personal Data Protection Office (PDPO) of the
           National Information Technology Authority – Uganda (NITA-U).
         </p>

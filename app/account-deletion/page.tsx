@@ -56,7 +56,7 @@ export default function AccountDeletionPage() {
               Request deletion of your HealthMind account and associated personal data.
             </p>
             <p className="text-sm sm:text-base text-white/80 mt-2">
-              Last Updated: November 9, 2026
+              Last Updated: November 10, 2026
             </p>
           </motion.div>
         </div>
