@@ -54,7 +54,7 @@ export const defaultImpactSnapshot: PublicImpactSnapshot = {
   reportingPeriod: null,
   lastVerifiedAt: null,
   metrics: [
-    unavailableMetric("registered-accounts", "Registered accounts", "The production aggregate is being connected."),
+    unavailableMetric("registered-accounts", "Registered users", "The production aggregate is being connected."),
     unavailableMetric("monthly-active-users", "Monthly active users", "Firebase Analytics is configured, but reportable production data has not yet been verified."),
     unavailableMetric("ai-conversations", "AI conversations", "Event receipt and the definition of a meaningful conversation are being verified."),
     unavailableMetric("mood-check-ins", "Mood check-ins", "The current check-in flow is not yet centrally countable."),

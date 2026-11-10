@@ -13,7 +13,7 @@ import {
 type Icon = ComponentType<{ className?: string }>
 
 const cards: Array<[string, string, Icon]> = [
-  ["registered-accounts", "Registered accounts", Users],
+  ["registered-accounts", "Registered users", Users],
   ["monthly-active-users", "Monthly active users", Activity],
   ["ai-conversations", "AI conversations", MessageCircle],
   ["journal-entries", "Journal entries", NotebookPen],

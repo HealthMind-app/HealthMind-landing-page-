@@ -20,8 +20,8 @@ const cell = (value) => {
   return `"${text.replaceAll('"', '""')}"`;
 };
 
-console.log(["email", "source", "createdAt", "submissions"].join(","));
+console.log(["email", "source", "environment", "createdAt", "submissions"].join(","));
 for (const doc of snapshot.docs) {
   const d = doc.data();
-  console.log([d.email, d.source, d.createdAt?.toDate().toISOString(), d.submissions].map(cell).join(","));
+  console.log([d.email, d.source, d.environment ?? "production", d.createdAt?.toDate().toISOString(), d.submissions].map(cell).join(","));
 }

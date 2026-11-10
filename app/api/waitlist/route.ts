@@ -8,6 +8,9 @@ export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const SOURCES = new Set(["hero", "navbar", "final-cta"]);
+// "production", "preview" or "development": lets test signups made on preview
+// deployments (which share the production database) be found and removed.
+const ENVIRONMENT = process.env.VERCEL_ENV ?? "development";
 
 /**
  * Stores signups in Firestore `website_waitlist`, one document per email
@@ -34,11 +37,16 @@ export async function POST(request: Request) {
     await db.runTransaction(async (transaction) => {
       const existing = await transaction.get(ref);
       if (existing.exists) {
-        transaction.update(ref, { lastSubmittedAt: FieldValue.serverTimestamp(), submissions: FieldValue.increment(1) });
+        transaction.update(ref, {
+          lastSubmittedAt: FieldValue.serverTimestamp(),
+          submissions: FieldValue.increment(1),
+          lastEnvironment: ENVIRONMENT,
+        });
       } else {
         transaction.create(ref, {
           email,
           source,
+          environment: ENVIRONMENT,
           createdAt: FieldValue.serverTimestamp(),
           lastSubmittedAt: FieldValue.serverTimestamp(),
           submissions: 1,

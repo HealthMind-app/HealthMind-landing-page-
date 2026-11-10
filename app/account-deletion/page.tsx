@@ -27,9 +27,10 @@ export default function AccountDeletionPage() {
   ];
 
   const retainedData = [
-    "Records required for legal, fraud prevention, tax, payment, or security purposes",
-    "Anonymized analytics that can no longer identify you",
-    "Backup copies for up to 90 days before automatic removal from backup systems",
+    "A minimal record that your account was deleted and when",
+    "Records of privacy requests, kept for up to 2 years to show they were handled",
+    "Delivery and abuse-prevention logs kept for limited periods by our service providers",
+    "Anonymous statistics that cannot identify you",
   ];
 
   return (
@@ -55,7 +56,7 @@ export default function AccountDeletionPage() {
               Request deletion of your HealthMind account and associated personal data.
             </p>
             <p className="text-sm sm:text-base text-white/80 mt-2">
-              Last Updated: November 7, 2026
+              Last Updated: November 10, 2026
             </p>
           </motion.div>
         </div>
@@ -177,7 +178,7 @@ export default function AccountDeletionPage() {
             Deletion in the app is immediate. For web and email requests, we aim to respond within 48 hours, and after account ownership is verified, your account data will be deleted within 30 days.
           </p>
           <p className="text-gray-700">
-            Some deleted data may remain in encrypted backups for up to 90 days before automatic removal from backup systems.
+            We do not currently keep database backups of user data, so deleted data cannot be restored.
           </p>
         </motion.section>
 

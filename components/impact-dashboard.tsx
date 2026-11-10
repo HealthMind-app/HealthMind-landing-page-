@@ -42,7 +42,7 @@ const communityMetrics = [
 ] as const
 
 const platformMetrics = [
-  ["registered-accounts", "Registered accounts", Users],
+  ["registered-accounts", "Registered users", Users],
   ["monthly-active-users", "Monthly active users", Activity],
   ["ai-conversations", "AI conversations", MessageCircle],
   ["mood-check-ins", "Mood check-ins", Sparkles],
