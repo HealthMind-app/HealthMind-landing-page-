@@ -6,8 +6,8 @@ import { CONTACT_EMAIL } from "@/lib/site"
  * Values marked CONFIRM must be checked by the company before this goes live.
  */
 export const LEGAL = {
-  /** CONFIRM exact registered spelling (and any "Ltd"/"Limited") before going live. */
-  entityName: "AlverMind Technologies",
+  /** Registered company name. */
+  entityName: "AlverMind Technologies Limited",
   registeredAddress: "Ntinda–Kira Road, Kampala, Uganda",
   /** Nobody younger may use HealthMind. Must match LegalConfig.minimumAge in the app. */
   minimumAge: 13,
