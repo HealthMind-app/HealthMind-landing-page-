@@ -1,0 +1,2 @@
+event_name,event_type,start_date,end_date,town_or_district,country,partner_organisations,attendees_count,how_attendees_counted,short_story_or_quote,quote_permission,press_or_social_links,photo_folder,photos_consent_confirmed,publish_on_website
+Example: Mental Health Awareness Day,outreach,2026-10-10,2026-10-10,Ntinda,Uganda,Example School; Example NGO,120,Sign-in sheet,"""I learned it's okay to ask for help."" – Student",yes,https://example.com/post,2026-10-10-awareness-day,yes,yes
