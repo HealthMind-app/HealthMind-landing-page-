@@ -6,20 +6,13 @@ import {
   Activity,
   AlertCircle,
   BarChart3,
-  Building2,
   CalendarDays,
   Clock3,
-  FileText,
-  Globe2,
-  GraduationCap,
   HeartHandshake,
-  Hospital,
-  ImageIcon,
   Landmark,
   MessageCircle,
   NotebookPen,
   RefreshCw,
-  School,
   ShieldCheck,
   Sparkles,
   Users,
@@ -31,15 +24,21 @@ import {
   type PublicImpactMetric,
   type PublicImpactSnapshot,
 } from "@/lib/impact"
+import ImpactGallery from "@/components/impact-gallery"
+import { communityReach } from "@/lib/gallery"
 
 type Icon = ComponentType<{ className?: string }>
 
-const communityMetrics = [
-  ["people-reached", "People reached", Users, "Verified outreach attendance records are required."],
-  ["communities-engaged", "Communities engaged", Landmark, "A reviewed definition of a community is required."],
-  ["partner-organizations", "Partner organizations", HeartHandshake, "Partner records and publication permission are required."],
-  ["outreach-events", "Outreach events", CalendarDays, "Approved completed-event records are required."],
-] as const
+const reach = communityReach()
+
+// Only figures backed by an event record are shown; a card without one is left out.
+type Figure = { label: string; value: string; note: string; icon: Icon }
+const communityCards: Figure[] = [
+  ...(reach.people ? [{ label: "People reached", value: reach.people.value, note: reach.people.note, icon: Users }] : []),
+  ...(reach.communities.length ? [{ label: "Communities engaged", value: String(reach.communities.length), note: reach.communities.join(", "), icon: Landmark }] : []),
+  ...(reach.partners.length ? [{ label: "Partner organizations", value: String(reach.partners.length), note: reach.partners.join(", "), icon: HeartHandshake }] : []),
+  ...(reach.outreachEvents ? [{ label: "Outreach events", value: String(reach.outreachEvents), note: "Summits and community outreaches since May 2026", icon: CalendarDays }] : []),
+]
 
 const platformMetrics = [
   ["registered-accounts", "Registered users", Users],
@@ -48,22 +47,6 @@ const platformMetrics = [
   ["mood-check-ins", "Mood check-ins", Sparkles],
   ["journal-entries", "Journal entries", NotebookPen],
   ["seven-day-retention", "Seven-day retention", RefreshCw],
-] as const
-
-const outcomeMetrics = [
-  ["improved-wellbeing", "Reporting improved emotional wellbeing"],
-  ["goal-progress", "Progressing toward wellness goals"],
-  ["felt-supported", "Feeling better supported"],
-  ["would-recommend", "Would recommend HealthMind"],
-] as const
-
-const globalReach = [
-  ["Countries", Globe2],
-  ["Districts", Landmark],
-  ["Universities", GraduationCap],
-  ["Schools", School],
-  ["NGOs", Building2],
-  ["Hospitals", Hospital],
 ] as const
 
 function statusLabel(metric?: PublicImpactMetric) {
@@ -97,27 +80,15 @@ function MetricCard({ metric, label, icon: Icon }: { metric?: PublicImpactMetric
   )
 }
 
-function EmptyMetricCard({ label, icon: Icon, explanation }: { label: string; icon: Icon; explanation: string }) {
+function FigureCard({ label, value, note, icon: Icon }: { label: string; value: string; note: string; icon: Icon }) {
   return (
     <article className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
       <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700">
         <Icon className="h-5 w-5" />
       </div>
-      <p className="text-2xl font-bold text-slate-950">—</p>
+      <p className="text-2xl font-bold text-slate-950">{value}</p>
       <h3 className="mt-1 text-sm font-semibold text-slate-900">{label}</h3>
-      <p className="mt-2 text-xs leading-5 text-slate-500">{explanation}</p>
-    </article>
-  )
-}
-
-function OutcomeCard({ label }: { label: string }) {
-  return (
-    <article className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
-      <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-[7px] border-slate-100 text-sm font-bold text-slate-400">—</div>
-      <div>
-        <h3 className="text-sm font-semibold text-slate-900">{label}</h3>
-        <p className="mt-1 text-xs leading-5 text-slate-500">Awaiting an approved survey method and sufficient sample.</p>
-      </div>
+      <p className="mt-2 text-xs leading-5 text-slate-500">{note}</p>
     </article>
   )
 }
@@ -163,6 +134,12 @@ export default function ImpactDashboard() {
     }).format(new Date(snapshot.lastVerifiedAt))
   }, [snapshot.lastVerifiedAt, snapshot.timezone])
 
+  // Platform metrics appear one by one as each gets a verified value.
+  const platformAvailable = platformMetrics.flatMap(([id, label, icon]) => {
+    const metric = metricById(snapshot, id)
+    return formatMetricValue(metric) ? [{ id, label, icon, metric }] : []
+  })
+
   return (
     <main className="bg-[#f8f8fc] text-slate-950">
       <section className="border-b border-violet-100 bg-gradient-to-br from-white via-white to-violet-50 px-4 pb-14 pt-32">
@@ -173,7 +150,7 @@ export default function ImpactDashboard() {
               {loading ? "Checking reporting status" : requestError ? "Reporting error" : snapshot.status === "latest_verified_data" ? "Latest verified data" : "Reporting in progress"}
             </div>
             <h1 className="mt-5 text-4xl font-bold tracking-tight text-slate-950 sm:text-5xl">Our impact, reported responsibly</h1>
-            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">A transparent view of HealthMind’s reach and platform activity. Unsupported figures remain visibly unavailable until their source and methodology are approved.</p>
+            <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-600">A transparent view of HealthMind’s reach and platform activity. Every figure here comes from an event record or verified platform data, and new figures are added as soon as their source is verified.</p>
             <div className="mt-7 flex flex-wrap gap-3 text-sm text-slate-600">
               <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 shadow-sm"><Clock3 className="h-4 w-4 text-violet-600" />{lastVerified ? `Last verified ${lastVerified}` : "Reporting connection in progress"}</span>
               <Link href="/impact/methodology" className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 font-semibold text-violet-700 shadow-sm"><ShieldCheck className="h-4 w-4" />How we measure impact</Link>
@@ -194,66 +171,32 @@ export default function ImpactDashboard() {
         {requestError && <div className="flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50 p-4 text-sm text-amber-900"><AlertCircle className="mt-0.5 h-5 w-5 shrink-0" /><p>The production aggregate is temporarily unavailable. No sample figures have been substituted.</p></div>}
 
         <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-          <SectionHeading title="Community Reach" description="Expanding access through verified outreach activity" href="#stories" linkLabel="View outreach activities" />
+          <SectionHeading title="Community Reach" description="From our outreach event records" href="#stories" linkLabel="View outreach activities" />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {communityMetrics.map(([id, label, Icon, explanation]) => <EmptyMetricCard key={id} label={label} icon={Icon} explanation={explanation} />)}
+            {communityCards.map((card) => <FigureCard key={card.label} {...card} />)}
           </div>
         </section>
 
-        <div className="grid gap-8 lg:grid-cols-2">
+        {platformAvailable.length > 0 && (
           <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
             <SectionHeading title="Platform Activity" description="Aggregated production-platform activity" href="/impact/methodology" linkLabel="View methodology" />
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
-              {platformMetrics.map(([id, label, Icon]) => <MetricCard key={id} metric={metricById(snapshot, id)} label={label} icon={Icon} />)}
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+              {platformAvailable.map(({ id, label, icon, metric }) => <MetricCard key={id} metric={metric} label={label} icon={icon} />)}
             </div>
           </section>
+        )}
+      </div>
 
-          <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-            <SectionHeading title="Wellness Outcomes (Self-Reported)" description="Displayed only after survey, consent, methodology, and sample review" href="/impact/methodology#wellness-outcomes" linkLabel="Learn more" />
-            <div className="grid gap-4 sm:grid-cols-2">
-              {outcomeMetrics.map(([id, label]) => <OutcomeCard key={id} label={label} />)}
-            </div>
-          </section>
-        </div>
+      <ImpactGallery />
 
-        <div className="grid gap-8 lg:grid-cols-[1.25fr_.75fr]">
-          <section id="stories" className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-            <SectionHeading title="Our Impact in Action" description="Approved outreach stories and media" />
-            <div className="grid gap-4 md:grid-cols-3">
-              {["Outreach story", "Community programme", "Partner activity"].map((title) => (
-                <article key={title} className="overflow-hidden rounded-2xl border border-slate-200">
-                  <div className="flex aspect-[4/3] items-center justify-center bg-slate-100"><ImageIcon className="h-9 w-9 text-slate-400" /></div>
-                  <div className="p-4"><h3 className="font-semibold text-slate-900">{title}</h3><p className="mt-2 text-xs leading-5 text-slate-500">Approved media, caption, date, location, and publication permission pending.</p></div>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-            <SectionHeading title="Crisis Support" description="Sensitive reporting requires additional review" />
-            <div className="rounded-2xl border border-rose-100 bg-rose-50 p-5"><ShieldCheck className="h-7 w-7 text-rose-600" /><h3 className="mt-3 font-semibold text-slate-900">Public aggregate withheld</h3><p className="mt-2 text-sm leading-6 text-slate-600">Crisis-related usage will not be published until clinical, privacy, and legal review is complete.</p></div>
-            <p className="mt-4 text-xs leading-5 text-slate-500">HealthMind encourages people in immediate danger to contact local emergency services or an appropriate qualified professional. HealthMind is not a replacement for emergency care.</p>
-          </section>
-        </div>
-
-        <div className="grid gap-8 lg:grid-cols-2">
-          <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-            <SectionHeading title="Global Reach" description="Approved programme regions and institutions" />
-            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
-              {globalReach.map(([label, Icon]) => <div key={label} className="rounded-2xl border border-slate-200 p-4 text-center"><Icon className="mx-auto h-5 w-5 text-violet-600" /><p className="mt-2 text-xl font-bold">—</p><p className="text-xs text-slate-500">{label}</p></div>)}
-            </div>
-          </section>
-          <section className="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm sm:p-8">
-            <SectionHeading title="Impact Reports" description="Only reports approved for public distribution appear here" />
-            <div className="flex min-h-44 flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-slate-50 px-6 text-center"><FileText className="h-8 w-8 text-slate-400" /><p className="mt-3 font-semibold text-slate-800">No approved public reports yet</p><p className="mt-1 text-sm text-slate-500">Report cards will appear when reviewed files are supplied.</p></div>
-          </section>
-        </div>
+      <div className="mx-auto max-w-6xl space-y-8 px-4 py-10">
 
         <section className="flex flex-col gap-6 rounded-3xl bg-gradient-to-r from-violet-100 to-fuchsia-50 p-7 sm:flex-row sm:items-center sm:justify-between sm:p-10">
           <div className="flex gap-4"><div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-violet-600 text-white"><HeartHandshake className="h-7 w-7" /></div><div><h2 className="text-2xl font-bold text-slate-950">Together, we can build healthier communities.</h2><p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">Partner with HealthMind to expand responsible, accessible emotional-wellness support.</p></div></div>
           <a href="mailto:support@healthmindgroup.com?subject=HealthMind%20partnership" className="shrink-0 rounded-full bg-violet-700 px-6 py-3 text-center text-sm font-semibold text-white hover:bg-violet-800">Partner with us</a>
         </section>
 
+        <p className="mx-auto max-w-3xl text-center text-xs leading-5 text-slate-500">HealthMind encourages people in immediate danger to contact local emergency services or an appropriate qualified professional. HealthMind is not a replacement for emergency care.</p>
         <p className="text-center text-xs text-slate-500">{loading ? "Loading verified reporting status…" : snapshot.publicExplanation ?? "Metrics are published only after source and methodology verification."}</p>
       </div>
     </main>

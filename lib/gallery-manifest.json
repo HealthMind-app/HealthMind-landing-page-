@@ -1,0 +1,460 @@
+{
+  "generatedAt": "2026-11-20T16:56:06.367Z",
+  "events": {
+    "billi-now-now-2026": [
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-01.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-01.jpg",
+        "width": 1080,
+        "height": 720,
+        "featured": true,
+        "source": "IMG-1.jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-02.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-02.jpg",
+        "width": 1080,
+        "height": 720,
+        "featured": true,
+        "source": "IMG-2.jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-03.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-03.jpg",
+        "width": 720,
+        "height": 1080,
+        "featured": true,
+        "source": "IMG-3.jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-04.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-04.jpg",
+        "width": 1080,
+        "height": 720,
+        "featured": true,
+        "source": "IMG-4.jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-05.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-05.jpg",
+        "width": 1080,
+        "height": 720,
+        "featured": true,
+        "source": "IMG-5.jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-06.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-06.jpg",
+        "width": 1080,
+        "height": 720,
+        "featured": true,
+        "source": "IMG-6.jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-07.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-07.jpg",
+        "width": 1080,
+        "height": 720,
+        "featured": true,
+        "source": "IMG-7.jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-08.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-08.jpg",
+        "width": 720,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.13.25 (1).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-09.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-09.jpg",
+        "width": 756,
+        "height": 1008,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.13.25 (2).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-10.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-10.jpg",
+        "width": 720,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.13.25 (3).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-11.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-11.jpg",
+        "width": 756,
+        "height": 1008,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.13.25.jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-12.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-12.jpg",
+        "width": 720,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.13.26 (1).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-13.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-13.jpg",
+        "width": 720,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.13.26 (3).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-14.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-14.jpg",
+        "width": 810,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.13.26.jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-15.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-15.jpg",
+        "width": 720,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.13.33 (1).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-16.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-16.jpg",
+        "width": 1080,
+        "height": 720,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.13.35 (1).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-17.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-17.jpg",
+        "width": 720,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.13.36 (1).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-18.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-18.jpg",
+        "width": 720,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.13.36 (2).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/billi-now-now-2026/photo-19.jpg",
+        "thumb": "/gallery/billi-now-now-2026/thumbs/photo-19.jpg",
+        "width": 1080,
+        "height": 720,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.13.36.jpeg"
+      },
+      {
+        "type": "video",
+        "src": "/gallery/billi-now-now-2026/video-01.mp4",
+        "poster": "/gallery/billi-now-now-2026/video-01.jpg",
+        "width": 540,
+        "height": 960,
+        "duration": 20,
+        "featured": true,
+        "source": "VID-1.mp4"
+      },
+      {
+        "type": "video",
+        "src": "/gallery/billi-now-now-2026/video-02.mp4",
+        "poster": "/gallery/billi-now-now-2026/video-02.jpg",
+        "width": 540,
+        "height": 960,
+        "duration": 23,
+        "featured": false,
+        "source": "WhatsApp Video 2026-08-14 at 15.17.15.mp4"
+      }
+    ],
+    "kayunga-2026": [
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-01.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-01.jpg",
+        "width": 810,
+        "height": 1080,
+        "featured": true,
+        "source": "IMG-1.jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-02.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-02.jpg",
+        "width": 1080,
+        "height": 810,
+        "featured": true,
+        "source": "IMG-2.jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-03.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-03.jpg",
+        "width": 810,
+        "height": 1080,
+        "featured": true,
+        "source": "IMG-3.jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-04.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-04.jpg",
+        "width": 810,
+        "height": 1080,
+        "featured": true,
+        "source": "IMG-4.jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-05.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-05.jpg",
+        "width": 608,
+        "height": 1080,
+        "featured": true,
+        "source": "IMG-5.jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-06.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-06.jpg",
+        "width": 810,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.14.50 (1).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-07.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-07.jpg",
+        "width": 810,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.14.50 (2).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-08.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-08.jpg",
+        "width": 746,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.14.50 (3).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-09.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-09.jpg",
+        "width": 810,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.14.50.jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-10.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-10.jpg",
+        "width": 1080,
+        "height": 810,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.15.26 (1).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-11.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-11.jpg",
+        "width": 1080,
+        "height": 810,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.15.26 (10).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-12.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-12.jpg",
+        "width": 1080,
+        "height": 810,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.15.26 (11).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-13.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-13.jpg",
+        "width": 810,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.15.26 (12).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-14.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-14.jpg",
+        "width": 810,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.15.26 (4).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-15.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-15.jpg",
+        "width": 810,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.15.26 (6).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-16.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-16.jpg",
+        "width": 810,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.15.26 (7).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-17.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-17.jpg",
+        "width": 810,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.15.26 (8).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-18.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-18.jpg",
+        "width": 608,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.15.26 (9).jpeg"
+      },
+      {
+        "type": "image",
+        "src": "/gallery/kayunga-2026/photo-19.jpg",
+        "thumb": "/gallery/kayunga-2026/thumbs/photo-19.jpg",
+        "width": 810,
+        "height": 1080,
+        "featured": false,
+        "source": "WhatsApp Image 2026-08-14 at 15.15.26.jpeg"
+      },
+      {
+        "type": "video",
+        "src": "/gallery/kayunga-2026/video-01.mp4",
+        "poster": "/gallery/kayunga-2026/video-01.jpg",
+        "width": 540,
+        "height": 960,
+        "duration": 35,
+        "featured": true,
+        "source": "VID-1.mp4"
+      },
+      {
+        "type": "video",
+        "src": "/gallery/kayunga-2026/video-02.mp4",
+        "poster": "/gallery/kayunga-2026/video-02.jpg",
+        "width": 540,
+        "height": 960,
+        "duration": 38,
+        "featured": false,
+        "source": "WhatsApp Video 2026-08-14 at 15.15.46 (2).mp4"
+      },
+      {
+        "type": "video",
+        "src": "/gallery/kayunga-2026/video-03.mp4",
+        "poster": "/gallery/kayunga-2026/video-03.jpg",
+        "width": 540,
+        "height": 960,
+        "duration": 8,
+        "featured": false,
+        "source": "WhatsApp Video 2026-08-14 at 15.15.46 (3).mp4"
+      },
+      {
+        "type": "video",
+        "src": "/gallery/kayunga-2026/video-04.mp4",
+        "poster": "/gallery/kayunga-2026/video-04.jpg",
+        "width": 540,
+        "height": 960,
+        "duration": 2,
+        "featured": false,
+        "source": "WhatsApp Video 2026-08-14 at 15.15.46 (4).mp4"
+      },
+      {
+        "type": "video",
+        "src": "/gallery/kayunga-2026/video-05.mp4",
+        "poster": "/gallery/kayunga-2026/video-05.jpg",
+        "width": 406,
+        "height": 720,
+        "duration": 87,
+        "featured": false,
+        "source": "WhatsApp Video 2026-08-14 at 15.15.46.mp4"
+      },
+      {
+        "type": "video",
+        "src": "/gallery/kayunga-2026/video-06.mp4",
+        "poster": "/gallery/kayunga-2026/video-06.jpg",
+        "width": 406,
+        "height": 720,
+        "duration": 108,
+        "featured": false,
+        "source": "WhatsApp Video 2026-08-14 at 15.15.47 (1).mp4"
+      },
+      {
+        "type": "video",
+        "src": "/gallery/kayunga-2026/video-07.mp4",
+        "poster": "/gallery/kayunga-2026/video-07.jpg",
+        "width": 406,
+        "height": 720,
+        "duration": 131,
+        "featured": false,
+        "source": "WhatsApp Video 2026-08-14 at 15.15.47.mp4"
+      },
+      {
+        "type": "video",
+        "src": "/gallery/kayunga-2026/video-08.mp4",
+        "poster": "/gallery/kayunga-2026/video-08.jpg",
+        "width": 406,
+        "height": 720,
+        "duration": 131,
+        "featured": false,
+        "source": "WhatsApp Video 2026-08-14 at 15.16.28.mp4"
+      }
+    ]
+  },
+  "hero": [
+    {
+      "slug": "billi-now-now-2026",
+      "src": "/gallery/billi-now-now-2026/hero-video-01.mp4",
+      "poster": "/gallery/billi-now-now-2026/video-01.jpg",
+      "width": 540,
+      "height": 960
+    }
+  ]
+}
