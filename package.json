@@ -7,6 +7,7 @@
     "feedback:send-test": "node scripts/feedback-email.mjs send-test",
     "feedback:validate": "node scripts/validate-feedback.mjs",
     "feedback:test": "node --test scripts/feedback.test.mjs",
+    "gallery:build": "node scripts/build-gallery-media.mjs",
     "build": "next build",
     "dev": "next dev",
     "lint": "eslint .",
